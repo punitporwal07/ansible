@@ -1,0 +1,49 @@
+# file includes different task involved in configuration management
+---
+- hosts: host
+gather_facts: yes
+become: true
+become_method: su
+#become_user: wls
+
+vars: 
+  remote_home: /tmp
+  remote_path: "{{ remote_home }}/workdir"
+  
+tasks:
+
+  - name: Verify os-release
+    shell: cat /etc/sysconfig/Build-id
+    register: version
+    args:
+      executable: /bin/bash
+  - debug: var=version.stdout
+  
+  -name: Reboot server
+   shell: reboot
+   args:
+     executable: /bin/bash
+  
+  -name: wait 600 (default) secs, but will do handshake with target after 150 secs
+   wait_for_connection:
+     delay: 10
+     sleep: 5
+    
+  -name: copy file from local to remote
+   unarchive: 
+     src: ../files/myfiles.sh
+     dest: "{{remote_path}}"
+     
+  -name: Uncompress directory
+   unarchive:
+     src: /project/devops/files.tgz
+     dest: /project/devops/files_unc
+     
+  -name: copy mutliple files
+   copy: src=/project/devops/{{ item }} dest=/var/tmp/wls/
+   with_items:
+     - wls.conf
+     - wls.properties
+     - wls.key
+     
+    
