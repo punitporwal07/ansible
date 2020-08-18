@@ -23,6 +23,13 @@ tasks:
    shell: reboot
    args:
      executable: /bin/bash
+     
+### Reboot module to use in Ansible version below 2.9 
+  - name: Restart server
+      command: 'sleep 1 && shutdown -r now "Reboot triggered by Ansible" && sleep 1'
+      async: 1
+      poll: 0
+      ignore_errors: true 
   
   -name: wait 600 (default) secs, but will do handshake with target after 150 secs
    wait_for_connection:
