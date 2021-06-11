@@ -21,7 +21,7 @@
          vpc_subnet_id: subnet-034c62cf89f57feaa
          assign_public_ip: yes
          instance_tags:
-           name: ec2-instance1
+           Name: ec2-instance1
       register: ec2
 ...
 
