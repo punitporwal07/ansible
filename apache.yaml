@@ -1,0 +1,10 @@
+## Playbook to install Apache // apache.yaml
+---
+- hosts: webserver
+  sudo: yes
+  tasks:
+    - name: install apache2
+      apt: name=apache2 update_cache=yes state=latest
+...
+
+## $ ansible-playbook apache.yaml --ask-sudo-pass
