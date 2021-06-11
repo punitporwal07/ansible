@@ -1,0 +1,15 @@
+### Playbook to install nginx 
+---
+- hosts : webserver
+tasks :
+- name : install nginx web server
+apt: pkg=nginx state=installed update_cache=true
+notify:
+- start nginx
+
+handlers :
+-name: start nginx
+service : name=nginx state=started
+...
+
+## $ ansible-playbook -i nginx.yaml
