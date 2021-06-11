@@ -1,0 +1,13 @@
+### Playbook to install Java 
+---
+- hosts: appserver
+  remote_user: red
+  tasks:
+   - name: Unpack java archive
+     unarchive:
+        src: /software/bea/java/jdk-8u172-linux-x64.tar.gz
+        dest: /software/bea/java/
+        remote_src: yes
+...
+
+## $ ansible-playbook -i inventory.ini java.yaml
