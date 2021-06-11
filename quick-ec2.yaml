@@ -12,4 +12,4 @@
        count: 1
 ...
 
-## $ ansible-playbook -i ec2.yaml
+## $ ansible-playbook -i quick-ec2.yaml
