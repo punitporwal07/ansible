@@ -1,15 +1,15 @@
 ### Playbook to provision an Amazon EC2 instance
 ---
 - hosts : localhost
-tasks :
-- name : launching AWS instance using Ansible
-ec2: 
-key_name: your_key_file_name
-instance_type: t2.micro 
-image: ami-0d8d212151031f51c
-region: us-east-1
-wait: yes
-count: 1
+  tasks :
+   - name : launching AWS instance using Ansible
+     ec2: 
+     key_name: your_key_file_name
+     instance_type: t2.micro 
+     image: ami-0d8d212151031f51c
+     region: us-east-1
+     wait: yes
+     count: 1
 ...
 
 ## $ ansible-playbook -i ec2.yaml
