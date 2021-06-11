@@ -1,0 +1,28 @@
+### A playbook that will provision an EC2 instace with your custom resources
+---
+- name: Create an EC2 instance
+  hosts: localhost
+  gather_facts: True
+  vars:
+    keypair: ec2-kp-nv
+    instance_type: t2.micro
+    security_group: ec2-sg-nv
+    image: ami-0aeeebd8d2ab47354
+    region: us-east-1
+  tasks:
+    - name: Launch instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: "{{ security_group }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-034c62cf89f57feaa
+         assign_public_ip: yes
+         instance_tags:
+           name: ec2-instance1
+      register: ec2
+...
+
+## $ ansible-playbook ec2-detaied.yaml
