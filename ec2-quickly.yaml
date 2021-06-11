@@ -1,4 +1,4 @@
-### Playbook to provision an Amazon EC2 instance
+### Playbook to provision an Amazon EC2 instance quickly
 ---
 - hosts : localhost
   tasks :
