@@ -1,4 +1,4 @@
-## Playbook to install Apache // apache.yaml
+### Playbook to install Apache
 ---
 - hosts: webserver
   sudo: yes
