@@ -1,0 +1,30 @@
+- name: Create AWS resources
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: Create a security group
+    ec2_group:
+      name: ansible-sg
+      description: "Custom Ansible Security Group"
+      region: us-east-1
+      vpc_id: vpc-0ef4699958c7cacce
+      aws_access_key: AKIAUDDUMMY4RU
+      aws_secret_key: RN+dfEDUMMY/1mteUW
+      rules:
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 8080
+          to_port: 8080
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+          register: firewall
