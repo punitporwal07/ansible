@@ -1,0 +1,19 @@
+- name: Create AWS resources
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    rgn: us-east-1
+  tasks:
+  - name: associate subnet to the VPC
+    ec2_vpc_subnet:
+      state: present
+      vpc_id: id-43498932039
+      region: "{{ rgn }}"
+      cidr: 10.0.0.0/28
+      aws_access_key: AKIAUDDUMMY4RUZR7LH
+      aws_secret_key: RN+25TJ6W7dDUMMYIq/1mteUWQVJZjlBSp
+      map_public: yes
+      resource_tags:
+        Name: subnet-by-ansible
+    register: subnet
