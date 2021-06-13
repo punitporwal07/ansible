@@ -1,0 +1,14 @@
+- name: Create AWS resources
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: create VPC
+    ec2_vpc_net:
+      name: vpc-by-ansible
+      cidr_block: 10.0.0.0/26
+      region: us-east-1
+      state: present
+      aws_access_key: AKIAUDVDUMMMY4RUZR7LH
+      aws_secret_key: RN+25TJDUMMYteUWQVJZjlBSp
+    register: vpc
