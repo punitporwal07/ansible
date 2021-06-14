@@ -10,4 +10,4 @@
   import_playbook: aws-subnet.yaml
 
 - name: Set variables on an imported playbook
-  import_playbook: aws-ec.yaml
+  import_playbook: aws-ec2.yaml
