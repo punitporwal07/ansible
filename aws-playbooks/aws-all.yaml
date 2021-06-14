@@ -1,0 +1,13 @@
+- hosts: localhost
+  tasks:
+    - debug:
+        msg: play1
+
+- name: Include a play after another play
+  import_playbook: aws-sg.yaml
+
+- name: Include a play to create SUBNET
+  import_playbook: aws-subnet.yaml
+
+- name: Set variables on an imported playbook
+  import_playbook: aws-ec.yaml
