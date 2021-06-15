@@ -1,0 +1,28 @@
+- name: Create AWS resources
+  hosts: localhost
+  gather_facts: True
+  tasks:
+    - elb_target_group:
+        name: app-tg
+        protocol: HTTP
+        port: 8080
+        vpc_id: vpc-6dba3c10
+        state: present
+        #    - name : launching load balancer
+    - elb_application_lb:
+        state: present
+        name: app-lb
+        subnets:
+          - subnet-bc97fdda
+          - subnet-40700061
+        security_groups:
+          - sg-07a9c936378e1903c
+        listeners:
+          - Protocol: HTTP
+            Port: 80
+            DefaultActions:
+              - Type: forward
+                TargetGroupName: app-tg
+            Rules:
+              - us-east-1
+        purge_listeners: no
