@@ -7,8 +7,11 @@
         protocol: HTTP
         port: 8080
         vpc_id: vpc-6dba3c10
+        target_type: ip
+        targets:
+          - Id: 172.31.91.48
+            Port: 8080
         state: present
-        #    - name : launching load balancer
     - elb_application_lb:
         state: present
         name: app-lb
@@ -26,3 +29,5 @@
             Rules:
               - us-east-1
         purge_listeners: no
+        tags:
+          Name: lb-by-ansible
