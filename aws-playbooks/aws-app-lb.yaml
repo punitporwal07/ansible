@@ -1,4 +1,4 @@
-- name: Create AWS resources
+- name: Create AWS LOAD BALANCER resources
   hosts: localhost
   gather_facts: True
   tasks:
