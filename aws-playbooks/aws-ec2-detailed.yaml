@@ -22,6 +22,7 @@
          assign_public_ip: yes
          instance_tags:
            Name: ec2-instance1
+           AppID: Ansible
       register: ec2
 ...
 
