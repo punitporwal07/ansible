@@ -11,9 +11,9 @@
       cidr_block: 10.0.0.0/26
       region: "{{rgn}}"
       state: present
+## If you have correct policies attached to your ansible host you can skip below two flags  
       aws_access_key: AKIAUDV7DUMMYUZR7LH
       aws_secret_key: RN+25TJ6DUMMY/1mteUWQVJZjlBSp
       resource_tags:
         type: ws-vpc
     register: vpc
-
