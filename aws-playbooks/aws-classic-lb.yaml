@@ -1,0 +1,25 @@
+#########################################
+# THIS WILL CREATE A CLASSIC LOAD BALANCER #
+#########################################
+- name: Create AWS resources
+  hosts: localhost
+  gather_facts: True
+  tasks:
+    - name : launching load balancer 
+      ec2_elb_lb:
+        name: clb-by-ansible
+        state: present
+        region: us-east-1
+        zones:
+          - us-east-1c
+          - us-east-1d
+        listeners:
+          - protocol: http # options are http, https, ssl, tcp
+            load_balancer_port: 80
+            instance_port: 80
+        stickiness:
+          type: application
+          enabled: yes
+          cookie: SESSIONID
+        tags:
+          AppID: try
